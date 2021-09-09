@@ -1,4 +1,12 @@
-const Rating = ({ value, text, color }) => {
+const Rating = ({
+  value,
+  text,
+  color,
+}: {
+  value: number;
+  text: string;
+  color: string;
+}) => {
   return (
     <div className="rating">
       <span>

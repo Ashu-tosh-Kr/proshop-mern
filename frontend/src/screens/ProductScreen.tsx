@@ -2,9 +2,10 @@ import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 import products from "../products";
+import { IProduct } from "../types";
 const ProductScreen = () => {
-  const params = useParams();
-  const product = products.find((p) => p._id === params.id);
+  const params = useParams<{ id: string }>();
+  const product = products.find((p) => p._id === params.id) as IProduct;
   return (
     <div>
       <Link to={`/`} className="btn btn-dark my-3">
