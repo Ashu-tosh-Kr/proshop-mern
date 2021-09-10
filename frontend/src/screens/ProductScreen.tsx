@@ -1,11 +1,14 @@
 import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
+import { useOneProduct } from "../api/ProductsApi";
 import Rating from "../components/Rating";
-import products from "../products";
-import { IProduct } from "../types";
+
 const ProductScreen = () => {
-  const params = useParams<{ id: string }>();
-  const product = products.find((p) => p._id === params.id) as IProduct;
+  const { id } = useParams<{ id: string }>();
+  const { product, isLoading, isError } = useOneProduct(id);
+
+  if (isLoading) return <div className="">Loading</div>;
+  if (isError) return <div className="">Error</div>;
   return (
     <div>
       <Link to={`/`} className="btn btn-dark my-3">

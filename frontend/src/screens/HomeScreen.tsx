@@ -1,7 +1,10 @@
-import products from "../products";
 import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
+import { useAllProducts } from "../api/ProductsApi";
 const HomeScreen = () => {
+  const { products, isError, isLoading } = useAllProducts();
+  if (isLoading) return <div className="">Loading</div>;
+  if (isError) return <div className="">Error</div>;
   return (
     <>
       <h1>Latest Products</h1>
