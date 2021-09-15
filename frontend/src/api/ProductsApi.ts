@@ -2,6 +2,9 @@ import { useQuery } from "react-query";
 import { IProduct } from "../types";
 import instance from "./axiosInstance";
 
+/**
+ * @desc get all products
+ */
 export const useAllProducts = () => {
   const { data, isLoading, isError, error } = useQuery(
     "allproducts",
@@ -15,6 +18,9 @@ export const useAllProducts = () => {
   return { products, isLoading, isError, errMsg };
 };
 
+/**
+ * @desc get one product by id
+ */
 export const useOneProduct = (id: string) => {
   const { data, isLoading, isError, error } = useQuery(
     "product",
