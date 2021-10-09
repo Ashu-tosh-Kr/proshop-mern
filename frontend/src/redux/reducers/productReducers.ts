@@ -9,7 +9,7 @@ import {
 
 export const productListReducer = (
   state = { products: [] },
-  action: { type: string; payload: Object }
+  action: { type: string; payload: Record<string, unknown> }
 ) => {
   switch (action.type) {
     case PRODUCT_LIST_REQUEST:
@@ -34,7 +34,7 @@ export const productListReducer = (
 
 export const productDetailsReducer = (
   state = { product: { reviews: [] } },
-  action: { type: string; payload: Object }
+  action: { type: string; payload: Record<string, unknown> }
 ) => {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
