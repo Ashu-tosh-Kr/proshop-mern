@@ -8,5 +8,8 @@
     "react-app/jest",
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended"
-  ]
+  ],
+  "rules":{
+    "no-console":"warn"
+  }
 }
