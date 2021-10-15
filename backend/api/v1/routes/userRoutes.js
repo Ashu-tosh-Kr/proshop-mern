@@ -1,4 +1,5 @@
 import express from "express";
+import expressAsyncHandler from "express-async-handler";
 const userRouter = express.Router();
 import {
   authUser,
@@ -12,16 +13,19 @@ import {
 } from "../controllers/userController.js";
 import { protect, admin } from "../middlewares/authMiddleware.js";
 
-userRouter.route("/").post(registerUser).get(protect, admin, getUsers);
-userRouter.post("/login", authUser);
+userRouter
+  .route("/")
+  .post(expressAsyncHandler(registerUser))
+  .get(protect, admin, expressAsyncHandler(getUsers));
+userRouter.post("/login", expressAsyncHandler(authUser));
 userRouter
   .route("/profile")
-  .get(protect, getUserProfile)
-  .put(protect, updateUserProfile);
+  .get(protect, expressAsyncHandler(getUserProfile))
+  .put(protect, expressAsyncHandler(updateUserProfile));
 userRouter
   .route("/:id")
-  .delete(protect, admin, deleteUser)
-  .get(protect, admin, getUserById)
-  .put(protect, admin, updateUser);
+  .delete(protect, admin, expressAsyncHandler(deleteUser))
+  .get(protect, admin, expressAsyncHandler(getUserById))
+  .put(protect, admin, expressAsyncHandler(updateUser));
 
 export default userRouter;
