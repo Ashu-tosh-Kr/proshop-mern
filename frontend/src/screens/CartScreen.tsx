@@ -33,7 +33,7 @@ const CartScreen = () => {
   const removeFromCartHandler = (id: string) => {
     dispatch(removeFromCart(id));
   };
-  const checkoutHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const checkoutHandler = () => {
     // If they're not logged in then login eldse shipping
     history.push("/login?redirect=shipping");
   };
@@ -114,7 +114,7 @@ const CartScreen = () => {
                 type="button"
                 disabled={cart.cartItems.length === 0}
                 className="btn-block"
-                onClick={(e) => checkoutHandler(e)}
+                onClick={() => checkoutHandler()}
               >
                 Proceed To Checkout
               </Button>
