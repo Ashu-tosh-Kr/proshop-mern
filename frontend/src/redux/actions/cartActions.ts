@@ -1,7 +1,11 @@
 import axios from "axios";
 import { Dispatch } from "redux";
 import { ICartItem } from "../../types";
-import { CART_ADD_ITEM, CART_REMOVE_ITEM } from "../actionTypes";
+import {
+  CART_ADD_ITEM,
+  CART_REMOVE_ITEM,
+  CART_SAVE_SHIPPING_ADDRESS,
+} from "../actionTypes";
 
 export const addToCart =
   (id: string, qty: number) =>
@@ -44,4 +48,11 @@ export const removeFromCart =
       "cartItems",
       JSON.stringify(getState().cart.cartItems)
     );
+  };
+
+export const saveShippingAddress =
+  (data: any) =>
+  async (dispatch: Dispatch<{ type: string; payload: string }>) => {
+    dispatch({ type: CART_SAVE_SHIPPING_ADDRESS, payload: data });
+    localStorage.setItem("shippingAddress", JSON.stringify(data));
   };
