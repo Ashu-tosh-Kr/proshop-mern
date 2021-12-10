@@ -1,5 +1,5 @@
-import axios from "axios";
 import { Dispatch } from "redux";
+import instance from "../../api/axiosInstance";
 import { ICartItem } from "../../types";
 import {
   CART_ADD_ITEM,
@@ -17,9 +17,7 @@ export const addToCart =
       };
     }
   ) => {
-    const { data: product } = await axios.get(
-      `http://localhost:5000/api/products/${id}`
-    );
+    const { data: product } = await instance.get(`/api/products/${id}`);
     dispatch({
       type: CART_ADD_ITEM,
       payload: {

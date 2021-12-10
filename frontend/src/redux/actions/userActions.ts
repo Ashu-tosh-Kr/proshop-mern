@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "react";
+import instance from "../../api/axiosInstance";
 import {
   USER_DETAILS_FAIL,
   USER_DETAILS_REQUEST,
@@ -62,7 +63,7 @@ export const register =
       const config = {
         headers: { "Content-Type": "application/json" },
       };
-      const { data } = await axios.post(
+      const { data } = await instance.post(
         "/api/users/",
         { name, email, password },
         config
@@ -106,7 +107,7 @@ export const getUserDetails =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.get(`/api/users/${id}`, config);
+      const { data } = await instance.get(`/api/users/${id}`, config);
       dispatch({
         type: USER_DETAILS_SUCCESS,
         payload: data,
@@ -141,7 +142,7 @@ export const updateUserProfile =
           Authorization: `Bearer ${userInfo.token}`,
         },
       };
-      const { data } = await axios.put(`/api/users/profile`, user, config);
+      const { data } = await instance.put(`/api/users/profile`, user, config);
       dispatch({
         type: USER_UPDATE_PROFILE_SUCCESS,
         payload: data,

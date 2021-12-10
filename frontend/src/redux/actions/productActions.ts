@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { useAllProducts, useOneProduct } from "../../api/ProductsApi";
+import instance from "../../api/axiosInstance";
 import { IProduct } from "../../types";
 import {
   PRODUCT_DETAILS_FAIL,
@@ -14,8 +14,8 @@ export const listProducts =
   () => async (dispatch: Dispatch<{ type: string; payload?: IProduct[] }>) => {
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
-      const { products } = useAllProducts();
-      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: products });
+      const { data } = await instance.get(`/api/products`);
+      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     } catch (error: any) {
       dispatch({
         type: PRODUCT_LIST_FAIL,
@@ -32,8 +32,8 @@ export const listProductDetails =
   async (dispatch: Dispatch<{ type: string; payload?: IProduct }>) => {
     try {
       dispatch({ type: PRODUCT_DETAILS_REQUEST });
-      const { product } = useOneProduct(id);
-      dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: product });
+      const { data } = await instance.get(`/api/products/${id}`);
+      dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
     } catch (error: any) {
       dispatch({
         type: PRODUCT_DETAILS_FAIL,
