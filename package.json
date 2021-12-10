@@ -1,27 +1,28 @@
 {
-  "name": "e-commerce-v1",
+  "name": "proshop-mern",
   "version": "1.0.0",
   "description": "E-commerce fullstack",
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start backend/server.js",
+    "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "data:import": "node backend/data/seeder",
-    "data:destroy": "node backend/data/seeder -d"
+    "data:destroy": "node backend/data/seeder -d",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ashu-tosh-Kr/e-commerce-v1.git"
+    "url": "git+https://github.com/Ashu-tosh-Kr/proshop-mern.git"
   },
   "author": "Ashutosh Kumar",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Ashu-tosh-Kr/e-commerce-v1/issues"
+    "url": "https://github.com/Ashu-tosh-Kr/proshop-mern/issues"
   },
-  "homepage": "https://github.com/Ashu-tosh-Kr/e-commerce-v1#readme",
+  "homepage": "https://github.com/Ashu-tosh-Kr/proshop-mern#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
