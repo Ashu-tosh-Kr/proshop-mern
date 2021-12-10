@@ -5,7 +5,7 @@ import cors from "cors";
 // import cookieParser from "cookie-parser";
 
 const middlewareConfig = (app) => {
-  app.use(helmet());
+  // app.use(helmet());
   app.use(json());
   // app.use(morgan("common"));
   // app.use(cookieParser());
