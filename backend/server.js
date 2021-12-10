@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import routes from "./api/v1/index.js";
 import config from "./config/index.js";
 import { errorHandler, notFound } from "./config/customErrorHandler.js";
